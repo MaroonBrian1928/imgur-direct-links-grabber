@@ -1,0 +1,22 @@
+services:
+  imgur-direct-links-grabber:
+    container_name: imgur-direct-links-grabber
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    dns:
+      - 1.1.1.1         # Cloudflare IPv4
+      - 1.0.0.1         # Cloudflare IPv4
+    env_file:
+      - ./.env
+    environment:
+      NODE_ENV: production
+      PORT: "4000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:4000/ >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5

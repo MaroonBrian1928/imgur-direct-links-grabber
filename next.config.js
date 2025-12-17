@@ -7,9 +7,20 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  output: "standalone",
 
   images: {
-    domains: ["storage.ko-fi.com", "i.imgur.com"],
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.ko-fi.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
+      },
+    ],
   },
 
   /**
