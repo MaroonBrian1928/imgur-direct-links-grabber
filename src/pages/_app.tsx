@@ -8,6 +8,9 @@ import "~/styles/globals.css";
 import Head from "next/head";
 import { Toaster } from "~/components/ui/toaster";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://imgur.plen.io";
+
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ThemeProvider
@@ -24,7 +27,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         ></meta>
         <meta property="og:title" content="Imgur Direct Link Grabber" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://imgur.plen.io/" />
+        <meta property="og:url" content={`${siteUrl.replace(/\/+$/, "")}/`} />
       </Head>
       <Component {...pageProps} />
       <Toaster />

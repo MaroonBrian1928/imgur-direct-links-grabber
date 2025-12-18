@@ -21,7 +21,7 @@ The Imgur Direct Link Grabber is a web application designed to extract direct im
 ## Run Locally with Docker Compose
 
 1. Make sure Docker and Docker Compose are installed on your machine.
-2. Copy `.env.example` to `.env` and fill in any required values.
+2. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_SITE_URL` (and any other required values).
 3. Build and start the stack with `docker compose up --build`.
 4. Access the app at http://localhost:4000 once the container passes its health check.
 

@@ -33,6 +33,8 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://imgur.plen.io";
+
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
   const [textareaValue, setTextareaValue] = useState("");
@@ -276,25 +278,8 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-8">
           <div className="space-y-4 text-center">
             <h1 className="text-2xl font-bold tracking-tight">
-              <div>Imgur Direct Link Grabber | imgur.plen.io</div>
+              <div>Imgur Direct Link Grabber | {siteUrl}</div>
             </h1>
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1 text-xs text-teal-700 ring-1 ring-inset ring-teal-600/20 dark:bg-teal-900/30 dark:text-teal-400 dark:ring-teal-500/20">
-                <svg
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
-              </div>
-            </div>
             <p className="text-l text-gray-500 dark:text-gray-400">
               Enter an Imgur URL to get media direct links.
             </p>

@@ -9,17 +9,21 @@ RUN npm ci
 
 # Build the Next.js application as a standalone server.
 FROM base AS builder
-ENV NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_SITE_URL="https://imgur.plen.io"
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN SKIP_ENV_VALIDATION=1 npm run build
 
 # Final runtime image with only the necessary assets.
 FROM base AS runner
+ARG NEXT_PUBLIC_SITE_URL="https://imgur.plen.io"
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     HOSTNAME=0.0.0.0 \
-    PORT=4000
+    PORT=4000 \
+    NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 
 RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -G nodejs
 

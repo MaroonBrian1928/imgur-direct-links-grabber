@@ -7,9 +7,10 @@ const DIRECT_IMGUR_HOST = "https://i.imgur.com";
 const ALBUM_ENDPOINT = (albumId: string) =>
   `https://imgur.com/ajaxalbums/getimages/${albumId}/hit.json?all=true`;
 const IMAGE_ENDPOINT = (imageId: string) => `https://imgur.com/${imageId}.json`;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://imgur.plen.io";
 const IMGUR_HEADERS = {
   Accept: "application/json",
-  "User-Agent": "ImgurDirectLinksBot/1.0 (+https://imgur.plen.io)",
+  "User-Agent": `ImgurDirectLinksBot/1.0 (+${SITE_URL})`,
   Referer: "https://imgur.com/",
 };
 
