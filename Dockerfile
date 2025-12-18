@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Install dependencies in a dedicated layer for building.
 FROM base AS deps
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN bun install
 
 # Build the Next.js application as a standalone server.
