@@ -1,11 +1,10 @@
-FROM node:22-alpine AS base
+FROM oven/bun:1.1.27 AS base
 WORKDIR /app
-RUN apk add --no-cache libc6-compat ca-certificates
 
 # Install dependencies in a dedicated layer for building.
 FROM base AS deps
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN bun install
 
 # Build the Next.js application as a standalone server.
 FROM base AS builder
@@ -14,7 +13,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN SKIP_ENV_VALIDATION=1 npm run build
+RUN SKIP_ENV_VALIDATION=1 bun run build
 
 # Final runtime image with only the necessary assets.
 FROM base AS runner
@@ -25,7 +24,8 @@ ENV NODE_ENV=production \
     PORT=4000 \
     NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 
-RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -G nodejs
+RUN addgroup --gid 1001 nodejs \
+    && adduser --disabled-password --gecos "" --ingroup nodejs --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
@@ -36,4 +36,4 @@ USER nextjs
 
 EXPOSE 4000
 
-CMD ["node", "server.js"]
+CMD ["bun", "server.js"]

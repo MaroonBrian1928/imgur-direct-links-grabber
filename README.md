@@ -18,6 +18,13 @@ The Imgur Direct Link Grabber is a web application designed to extract direct im
 - Radix UI for icons
 - Custom API and utilities for handling Imgur URLs
 
+## Local Development
+
+1. Install [Bun](https://bun.sh/) (v1.0 or newer).
+2. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_SITE_URL` (and any other required values).
+3. Install dependencies with `bun install`.
+4. Start the dev server via `bun run dev` and open http://localhost:3000.
+
 ## Run Locally with Docker Compose
 
 1. Make sure Docker and Docker Compose are installed on your machine.

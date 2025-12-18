@@ -57,9 +57,10 @@
   "ct3aMetadata": {
     "initVersion": "7.26.0"
   },
-  "packageManager": "npm@10.2.3",
+  "packageManager": "bun@1.1.27",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
   },
   "overrides": {
     "@next/eslint-plugin-next": {
