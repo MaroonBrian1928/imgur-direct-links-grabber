@@ -1,8 +1,8 @@
 # Imgur Direct Link Grabber v2
 
-Hosted here: https://imgur.plen.io/
+Fork of https://github.com/jlplenio/imgur-direct-links-grabber that doesn't rely on imgur api keys as they are no longer giving them out. Also adds in support for docker containers to run locally in a containerized setup.
 
-The Imgur Direct Link Grabber is a web application designed to extract direct image links from any given Imgur gallery URL. It's built using modern web technologies and provides a simple and intuitive user interface that ensures ease of use. It replaces the previous web application, because heroku got too expensive: https://github.com/jlplenio/imgur-direct-links
+The Imgur Direct Link Grabber is a web application designed to extract direct image links from any given Imgur gallery URL. It's built using modern web technologies and provides a simple and intuitive user interface that ensures ease of use.
 
 ## Features
 
